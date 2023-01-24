@@ -22,7 +22,7 @@ def add():
         year = yesterday.strftime("%y")
 
     # Filename
-    fileName = "/home/ethan/Programs/log/" + year + month
+    fileName = "/home/USERNAME/Programs/log/" + year + month
     exists = os.path.isfile(fileName)
 
     if exists: 
@@ -71,7 +71,7 @@ def search(query, rangeA):
 
     
 def searchMonth(yM, queryA):
-    fileName = "/home/ethan/Programs/log/" + yM[0:2] + yM[2:4]
+    fileName = "/home/USERNAME/Programs/log/" + yM[0:2] + yM[2:4]
     exists = os.path.isfile(fileName)
     toReturn = []
     # Open file and get data
@@ -103,7 +103,7 @@ def findDay(dayQuery):
     yearFind = dayQuery[0:2]
     monthFind = dayQuery[2:4]
     dayFind = dayQuery[4:6]
-    fileName = "/home/ethan/Programs/log/" + yearFind + monthFind
+    fileName = "/home/USERNAME/Programs/log/" + yearFind + monthFind
     exists = os.path.isfile(fileName)
     if exists: 
         try:
