@@ -10,7 +10,8 @@ New entry:
 `python3 log.py`
 
 Lookup specific date:  
-`python3 log.py -d yymmdd`  
+`python3 log.py -d yymmdd`
+
 Lookup specific term:  
 `python3 log.py -s SearchTerm yy`  
 or  
