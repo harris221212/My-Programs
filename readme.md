@@ -24,7 +24,8 @@ Lookup specific term:
 or  
 `python3 log.py -s SearchTerm yymm`
 
-Program will automatically add results to yesterday if run before 1300. 
+Program will automatically add results to yesterday if run before 1300.  
+If you make a mistake, just re-run the program and it will overwrite the current days data. 
 
 ## mdToGroff.py
 
