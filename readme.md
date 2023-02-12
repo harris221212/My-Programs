@@ -2,7 +2,21 @@
 
 ## Log.py
 
+Every day run the program and enter information about the day.
 
+### Usage
+
+New entry:  
+`python3 log.py`
+
+Lookup specific date:  
+`python3 log.py -d yymmdd`  
+Lookup specific term:  
+`python3 log.py -s SearchTerm yy`  
+or  
+`python3 log.py -s SearchTerm yymm`
+
+Program will automatically add results to yesterday if run before 1300. 
 
 ## mdToGroff.py
 

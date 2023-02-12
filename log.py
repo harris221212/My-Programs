@@ -14,15 +14,14 @@ def add():
     day = today.strftime("%d")
     month = today.strftime("%m")
     year = today.strftime("%y")
-
-    if int(hour) < 10:
+    if int(hour) < 14:
         yesterday = datetime.now() - timedelta(1)
         day = yesterday.strftime("%d")
         month = yesterday.strftime("%m")
         year = yesterday.strftime("%y")
 
     # Filename
-    fileName = "/home/USERNAME/Programs/log/" + year + month
+    fileName = "/home/ethan/Programs/log/" + year + month + ".json"
     exists = os.path.isfile(fileName)
 
     if exists: 
@@ -36,13 +35,15 @@ def add():
     trips = input("Where Were You Today: ")
     video = input("Favourite Video Today: ")
     song = input("Favourite Song Today: ")
+    learn = input("What Did You Learn Today: ")
 
     # Format into JSON
     todayJson = {
         "stuff": stuff,
         "trips": trips,
         "video": video,
-        "song": song
+        "song": song,
+        "learn": learn
     }
 
     # Add to monthJson
@@ -71,7 +72,7 @@ def search(query, rangeA):
 
     
 def searchMonth(yM, queryA):
-    fileName = "/home/USERNAME/Programs/log/" + yM[0:2] + yM[2:4]
+    fileName = "/home/ethan/Programs/log/" + yM[0:2] + yM[2:4] + ".json"
     exists = os.path.isfile(fileName)
     toReturn = []
     # Open file and get data
@@ -85,7 +86,7 @@ def searchMonth(yM, queryA):
             #print(key)
             currentDay = monthJson[key]
             #print(currentDay)
-            keys = ["stuff", "trips", "video", "song"]
+            keys = ["stuff", "trips", "video", "song", "learn"]
             # Check for query and if found, add day to array toReturn
             for keyA in keys:
                 if queryA in currentDay[keyA]:
@@ -103,7 +104,7 @@ def findDay(dayQuery):
     yearFind = dayQuery[0:2]
     monthFind = dayQuery[2:4]
     dayFind = dayQuery[4:6]
-    fileName = "/home/USERNAME/Programs/log/" + yearFind + monthFind
+    fileName = "/home/ethan/Programs/log/" + yearFind + monthFind + ".json"
     exists = os.path.isfile(fileName)
     if exists: 
         try:
@@ -115,11 +116,11 @@ def findDay(dayQuery):
             print("Where Were You:  " + monthJson.get(dayFind).get("trips"))
             print("Favourite Video: " + monthJson.get(dayFind).get("video"))
             print("Favourite Song:  " + monthJson.get(dayFind).get("song"))
+            print("Learned:  " + monthJson.get(dayFind).get("learn"))
         except:
             print("Error, date not present")   
     else:
         print("Error, date not present")
-
 
 
 # Run selected function
@@ -127,7 +128,7 @@ if len(sys.argv) == 1:
     add()
 elif sys.argv[1] == "-s":
     if len(sys.argv) == 2:
-        print("Usage: Type string to search after -s, optionally specify date with yy/yymm format")
+        print("Usage: Type string to search after -s, specify date with yy/yymm format")
     elif len(sys.argv) == 3:
         search(sys.argv[2], 0)
     else:
