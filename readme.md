@@ -66,3 +66,15 @@ Install aria2c
 The link should be a link to either an an artists albums page, or ep/singles page. (e.g. LINK or LINK)
 
 The output will be a `.sh` file. `chmod +x toDownload.sh` to make excecutable, and then run it. 
+
+## musicCSV.py 
+
+WIP, used to get a csv file of song data from an artists Wikipedia songs page (i.e. pages like this: LINK)
+
+### Setup
+
+`pip3 install pandas requests`
+
+### Usage
+
+`python3 musicCSV.py link artist_name`
