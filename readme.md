@@ -43,4 +43,9 @@ Very simple bookmarking program using rofi
 `pip3 install pyperclip3 python-rofi`
 
 Change path in files to where ever you want the bookmarks to be stored.  
-Map `rofiA.py` and `rofiB.py` to keybaord shortcuts. `rofiA.py` is used to set new bookmarks and `rofiB.py` is used to access bookmakrs, so I have mapped `rofiA.py` to `Super+Shift+V` and `rofiB.py` to `Super+V`
+Map `rofiA.py` and `rofiB.py` to keyboard shortcuts. `rofiA.py` is used to set new bookmarks and `rofiB.py` is used to access bookmakrs, so I have mapped `rofiA.py` to `Super+Shift+V` and `rofiB.py` to `Super+V`
+
+### Usage
+
+To add bookmark, run `rofiA.py` and paste in the text you want to save.  
+To access bookmark, run `rofiB.py` and press `Enter` over desired text. It will be copied to the clipboard. 
