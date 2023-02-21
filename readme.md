@@ -33,3 +33,14 @@ Script to convert a standard markdown file to a groff file and then compile it i
 Usage: `python3 mdToGroff.py input.md output.pdf`
 
 Very WIP, so far only titles, paragraphs and code blocks are working. 
+
+## rofiA/B.py
+
+Very simple bookmarking program using rofi
+
+### Setup
+
+`pip3 install pyperclip3 python-rofi`
+
+Change path in files to where ever you want the bookmarks to be stored.  
+Map `rofiA.py` and `rofiB.py` to keybaord shortcuts. `rofiA.py` is used to set new bookmarks and `rofiB.py` is used to access bookmakrs, so I have mapped `rofiA.py` to `Super+Shift+V` and `rofiB.py` to `Super+V`
