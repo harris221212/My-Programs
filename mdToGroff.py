@@ -1,9 +1,22 @@
 import sys
 import re
 import subprocess
+import os
+
+# ctrl+f IMPROVE to find things I want to improve
+
+if not len(sys.argv) == 3:
+	print("Error, incorrect number of arguments. Correct format is (groffdoc input output)")
+	exit()
+
+if not os.path.isfile(sys.argv[1]):
+	print("Error, file doesn't exist")
+	exit()
 
 f = open(sys.argv[1], "r")
-groff = open(sys.argv[2], "w")
+tempFileNameArray = sys.argv[2].split(".")
+tempFileName = tempFileNameArray[0]
+groff = open(tempFileName, "w")
 fileString = f.read()
 f.close()
 
@@ -15,7 +28,6 @@ curLine = 0
 insideCode = False
 
 # function to do checking for syntax
-
 def code(curLine):
 	curLine += 1
 	codeString = ""
@@ -23,7 +35,7 @@ def code(curLine):
 		codeString += splitString[curLine] + "\n"
 		curLine += 1
 	codeString = codeString.rstrip() # strip trailing newline
-	fileName = "temp." + language
+	fileName = "temp." + language # IMPROVE
 	f = open(fileName, "w")
 	f.write(codeString)
 	f.close()
@@ -41,10 +53,46 @@ def code(curLine):
 	codeFormatted = codeFormatted.replace("0.901961f 0.298039f 0.901961f", "0.035000f 0.525000f 0.345000f") # numbers
 	codeFormatted = codeFormatted.replace("0.776471f 0.254902f 0.776471f", "0.639000f 0.082000f 0.082000f") # string
 	codeFormatted = codeFormatted.replace("0.972549f 0.819608f 0.819608f", "1.000000f 0.000000f 0.000000f") # newline
-	
 	groff.write(codeFormatted + "\n") # write to file
 
+
+def paragraph(text):
+	# bold and italic
+	text = text.replace(".", "\[char46]")
 	
+	pattern = re.compile(r"(\*\*\*([^**]|.|[^**]*)\*\*\*)")
+	match = pattern.findall(text)
+	for pair in match:
+		newString = "\n" + ".BI \"" + pair[1] + "\"\c\n"
+		text = text.replace(pair[0], newString)
+		
+	# bold
+	pattern = re.compile(r"(\*\*([^**]|.|[^**]*)\*\*)")
+	match = pattern.findall(text)
+	for pair in match:
+		newString = "\n" + ".B \"" + pair[1] + "\"\c\n"
+		text = text.replace(pair[0], newString)
+	
+	# italic
+	pattern = re.compile(r"(\*([^*]|.|[^*]*)\*)")
+	match = pattern.findall(text)
+	for pair in match:
+		newString = "\n" + ".I \"" + pair[1] + "\"\c\n"
+		text = text.replace(pair[0], newString)
+		
+	# monospace
+	pattern = re.compile(r"(`([^`]|.|[^`]*)`)")
+	match = pattern.findall(text)
+	for pair in match:
+		newString = "\n" + ".CW \"" + pair[1] + "\"\c\n"
+		text = text.replace(pair[0], newString)
+	
+	
+	
+	#text = text.replace("\n ", "\n")
+	groff.write(text)
+
+
 
 def check(x, curLine):
 	global insideCode
@@ -72,8 +120,7 @@ def check(x, curLine):
 			insideCode = True
 	
 	elif not insideCode:
-		groff.write(".PP\n")
-		groff.write(x + "\n")
+		paragraph(x)
 
 
 for x in splitString:
@@ -84,9 +131,15 @@ for x in splitString:
 
 
 groff.close()
-pdfFileName = sys.argv[2] + ".pdf"
-pdfOutput = subprocess.run(["groff", "-ms", "-Tpdf", sys.argv[2]], capture_output=True) # get highlighted code
+pdfFileName = sys.argv[2]
+pdfOutput = subprocess.run(["groff", "-ms", "-Tpdf", tempFileName], capture_output=True) # get highlighted code
 pdf = pdfOutput.stdout
 pdfFile = open(pdfFileName, "wb")
 pdfFile.write(pdf)
 pdfFile.close()
+
+
+
+
+# Spare shit: 
+
