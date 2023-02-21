@@ -49,3 +49,20 @@ Map `rofiA.py` and `rofiB.py` to keyboard shortcuts. `rofiA.py` is used to set n
 
 To add bookmark, run `rofiA.py` and paste in the text you want to save.  
 To access bookmark, run `rofiB.py` and press `Enter` over desired text. It will be copied to the clipboard. 
+
+
+## appleMusic.py
+
+Used to download album art from Apple Music in high quality. 
+
+### Setup
+
+`pip3 install requests`  
+Install aria2c
+
+### Usage
+
+`python3 appleMusic.py link artist_name`  
+The link should be a link to either an an artists albums page, or ep/singles page. (e.g. LINK or LINK)
+
+The output will be a `.sh` file. `chmod +x toDownload.sh` to make excecutable, and then run it. 
