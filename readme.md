@@ -78,3 +78,11 @@ WIP, used to get a csv file of song data from an artists Wikipedia songs page (i
 ### Usage
 
 `python3 musicCSV.py link artist_name`
+
+## podcasts.py\sh
+
+Used to download all podcasts from an RSS feed
+
+### Usage
+
+`./podcasts.sh rss.xml`
