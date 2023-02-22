@@ -48,7 +48,8 @@ Map `rofiA.py` and `rofiB.py` to keyboard shortcuts. `rofiA.py` is used to set n
 ### Usage
 
 To add bookmark, run `rofiA.py` and paste in the text you want to save.  
-To access bookmark, run `rofiB.py` and press `Enter` over desired text. It will be copied to the clipboard. 
+To access bookmark, run `rofiB.py` and press `Enter` over desired text. It will be copied to the clipboard.  
+To remove bookmark, press `Alt+w` to remove selected bookmark.  
 
 
 ## appleMusic.py
