@@ -9,7 +9,7 @@ Every day run the program and enter information about the day.
 Open log.py and change the directory on lines `24, 75 and 107` to your own preffered directory. 
 
 Optionally create an alias:  
-`echo "alias log='python3 ~/Programs/My-Programs/log.py'" >> ~/.bashrc`
+`echo "alias log='python3 ~/Programs/myPrograms/log.py'" >> ~/.bashrc`
 
 ### Usage
 
